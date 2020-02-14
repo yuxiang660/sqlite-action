@@ -1,25 +1,19 @@
 on: [push]
 
 jobs:
-  hello_world_job:
-    strategy:
-      matrix:
-        redis-version: [5.0]
+  little_bee_server_test:
     runs-on: ubuntu-latest
-    name: Action test
+    name: little bee server test
     steps:
-    - name: Hello world action step
+    - name: Setup Env
       id: hello
-      uses: yuxiang660/sqlite-action@v2
+      uses: yuxiang660/sqlite-action@v3
       with:
-        who-to-greet: 'Mona the Octocat'
-    # Use the output from the `hello` step
+        who-to-greet: 'Yuxiang Wang'
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time }}"
-    - name: Install Redis
-      uses: shogo82148/actions-setup-redis@v1
-      with:
-        redis-version: ${{ matrix.redis-version }}
+    - name: Test Go
+      run: go version
     - name: Test Redis
       run: redis-cli --version
     - name: Test Sqlite
