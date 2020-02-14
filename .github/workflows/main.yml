@@ -5,5 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     name: little bee server test
     steps:
+      - name: Setup Env
+        run: sudo apt-get update && sudo apt-get install -y software-properties-common && sudo add-apt-repository ppa:longsleep/golang-backports && sudo apt install -y golang-go && sudo apt install -y redis-server && sudo apt-get install -y sqlite3
       - name: Test Little Bee Server
         run: go version && redis-cli --version && sqlite3 --version
