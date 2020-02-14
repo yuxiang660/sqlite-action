@@ -5,3 +5,7 @@ apt-get update && apt-get install -y software-properties-common && add-apt-repos
 echo "Hello $1"
 time=$(date)
 echo ::set-output name=time::$time
+
+go version
+redis-cli --version
+sqlite3 --version
