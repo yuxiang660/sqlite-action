@@ -5,16 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     name: little bee server test
     steps:
-    - name: Setup Env
-      id: hello
-      uses: yuxiang660/sqlite-action@v4
-      with:
-        who-to-greet: 'Yuxiang Wang'
-    - name: Get the output time
-      run: echo "The time was ${{ steps.hello.outputs.time }}"
-    - name: Test Go
-      run: go version
-    - name: Test Redis
-      run: redis-cli --version
-    - name: Test Sqlite
-      run: sqlite3 --version
+      - uses: yuxiang660/sqlite-action@v4
+      - name: Test Little Bee Server
+        run: go version && redis-cli --version && sqlite3 --version
