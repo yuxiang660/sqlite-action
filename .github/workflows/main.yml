@@ -7,7 +7,7 @@ jobs:
     steps:
     - name: Setup Env
       id: hello
-      uses: yuxiang660/sqlite-action@v3
+      uses: yuxiang660/sqlite-action@v4
       with:
         who-to-greet: 'Yuxiang Wang'
     - name: Get the output time
