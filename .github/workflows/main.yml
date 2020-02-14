@@ -2,8 +2,11 @@ on: [push]
 
 jobs:
   hello_world_job:
+    strategy:
+      matrix:
+        redis-version: [5.0]
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Action test
     steps:
     - name: Hello world action step
       id: hello
@@ -13,3 +16,11 @@ jobs:
     # Use the output from the `hello` step
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time }}"
+    - name: Install Redis
+      uses: shogo82148/actions-setup-redis@v1
+      with:
+        redis-version: ${{ matrix.redis-version }}
+    - name: Test Redis
+      run: redis-cli --version
+    - name: Test Sqlite
+      run: sqlite3 --version
